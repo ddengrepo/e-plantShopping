@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
-import CartItem from './CartItem';
-import { addItem, removeItem, updateQuantity } from './CartSlice';
-import { useDispatch } from 'react-redux';
+import CartItem from './CartItem.jsx';
+import { addItem, removeItem, updateQuantity } from './CartSlice.jsx';
+import { useDispatch, useSelector } from 'react-redux';
 
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
 
-    const [addToCart, setAddToCart] = useState({});
+    const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch();
+
+    const totalQuantity = useSelector(state =>
+        state.cart.items.reduce((total, item) => total + item.quantity, 0)
+    );
+
+
 
     const handleAddToCart = (product) => {
-        dispatchEvent(addItem(product));
-        setAddToCart((prevState) => ({
+        console.log('Dispatching addItem with product:', product); // Debugging log
+        dispatch(addItem(product)); // Dispatch the addItem action
+        setAddedToCart((prevState) => ({
             ...prevState,
             [product.name]: true, // True, indicates product is added to cart
         }));
@@ -361,8 +369,8 @@ function ProductList({ onHomeClick }) {
                             </h1>
 
                             <div className='product-list'>
-                                {category.plants.map((plant, index) => (
-                                    <div className="product-card" key={index}>
+                                {category.plants.map((plant, plantIndex) => (
+                                    <div className="product-card" key={plantIndex}>
                                         <div className="product-image">
                                             <img src={plant.image} alt={plant.name} />
                                         </div>
