@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
-import { addItem } from './CartSlice';
+import { addItem, removeItem, updateQuantity } from './CartSlice';
 import { useDispatch } from 'react-redux';
 
 function ProductList({ onHomeClick }) {
@@ -10,11 +10,11 @@ function ProductList({ onHomeClick }) {
 
     const [addToCart, setAddToCart] = useState({});
 
-    const handleAddToCart = (plant) => {
+    const handleAddToCart = (product) => {
         dispatchEvent(addItem(product));
         setAddToCart((prevState) => ({
             ...prevState,
-            [product.name]: true, // true, indicates product is added to cart
+            [product.name]: true, // True, indicates product is added to cart
         }));
     };
 
