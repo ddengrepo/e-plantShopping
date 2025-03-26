@@ -7,6 +7,7 @@ export const CartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
+      console.log('Adding item:', action.payload); // debugging log
       const { name, image, cost } = action.payload;
       const existingItem = state.items.find((item) => item.id === name);
       if (existingItem) {
