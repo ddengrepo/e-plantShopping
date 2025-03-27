@@ -417,10 +417,16 @@ function ProductList({ onHomeClick }) {
                                         <div className='product-price'>
                                             <p>{plant.cost}</p>
                                         </div>
+                                        {cart.items.some(item => item.name === plant.name) ? (
+                                            <button className='product-button added-to-cart'>
+                                                Add to Cart
+                                            </button>
+                                        ) : (
+                                            <button className='product-button' onClick={() => handleAddToCart(plant)}>
+                                                Add to Cart
+                                            </button>
+                                        )}
 
-                                        <button className='product-button' onClick={() => handleAddToCart(plant)}>
-                                            Add to Cart
-                                        </button>
                                     </div>
                                 ))}
                             </div>
@@ -429,8 +435,9 @@ function ProductList({ onHomeClick }) {
                 </div>
             ) : (
                 <CartItem onContinueShopping={handleContinueShopping} />
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 }
 
