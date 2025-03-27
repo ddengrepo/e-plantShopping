@@ -4,6 +4,8 @@ h1,
 ul {
     margin: 0;
     padding: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Set a background color */
@@ -103,6 +105,11 @@ body {
     /* Adjust height for better consistency */
 }
 
+.product-description {
+    font-style: italic;
+    color: grey;
+}
+
 .product-button {
     background-color: #e74c3c;
     color: #fff;
@@ -177,11 +184,13 @@ body {
 }
 
 .cart_quantity_count {
-    margin-top: 16px;
+    margin-top: 1px;
     /* background-color: red; */
-    margin-left: 27px;
+    margin-left: 1px;
     position: absolute;
     font-size: 29px;
+    text-align: center;
+    justify-content: center;
 
 }
 
